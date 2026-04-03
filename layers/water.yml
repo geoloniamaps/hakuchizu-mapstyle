@@ -1,0 +1,7 @@
+id: water
+type: fill
+source: geolonia
+source-layer: water
+paint:
+  fill-color: '#edf5fa'
+  fill-outline-color: '#ddedf5'

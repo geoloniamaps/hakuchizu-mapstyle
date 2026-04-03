@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>白地図マップスタイル プレビュー</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: sans-serif;
+    }
+    #controls {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px 14px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      font-size: 14px;
+    }
+    #controls label {
+      display: block;
+      margin: 4px 0;
+      cursor: pointer;
+    }
+    .geolonia {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <strong>スタイル切替</strong>
+    <label><input type="radio" name="style" value="./style.json" checked> ラベルあり</label>
+    <label><input type="radio" name="style" value="./style-nolabel.json"> 国名のみ</label>
+    <label><input type="radio" name="style" value="./style-notext.json"> テキストなし</label>
+  </div>
+  <div
+    id="map"
+    class="geolonia"
+    data-style="./style.json"
+    data-lat="36.0"
+    data-lng="137.0"
+    data-zoom="5"
+  ></div>
+  <script src="https://cdn.geolonia.com/v1/embed?geolonia-api-key=YOUR-API-KEY"></script>
+  <script>
+    document.querySelectorAll('input[name="style"]').forEach(function(radio) {
+      radio.addEventListener('change', function() {
+        var map = document.getElementById('map');
+        map.dataset.style = this.value;
+        // Reload to apply new style
+        location.reload();
+      });
+    });
+  </script>
+</body>
+</html>

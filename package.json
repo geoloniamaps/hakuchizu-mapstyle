@@ -1,0 +1,18 @@
+{
+  "name": "hakuchizu-mapstyle",
+  "version": "1.0.0",
+  "description": "白地図用のマップスタイル",
+  "main": "style.json",
+  "scripts": {
+    "start": "charites serve style.yml",
+    "build": "npm run build:default && npm run build:nolabel && npm run build:notext",
+    "build:default": "charites build style.yml ./docs/style.json",
+    "build:nolabel": "charites build style-nolabel.yml ./docs/style-nolabel.json",
+    "build:notext": "charites build style-notext.yml ./docs/style-notext.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@unvt/charites": "^2.0.0"
+  }
+}

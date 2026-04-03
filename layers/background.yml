@@ -1,0 +1,4 @@
+id: background
+type: background
+paint:
+  background-color: '#f9f9f9'

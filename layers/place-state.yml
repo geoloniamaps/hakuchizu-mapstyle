@@ -1,0 +1,26 @@
+id: place-state
+type: symbol
+source: geolonia
+source-layer: place
+minzoom: 4
+maxzoom: 12
+filter:
+  - ==
+  - class
+  - state
+layout:
+  text-font:
+    - Noto Sans Bold
+  text-field: '{name}'
+  text-size:
+    stops:
+      - - 4
+        - 13
+      - - 8
+        - 18
+  text-max-width: 6
+  text-letter-spacing: 0.05
+paint:
+  text-color: '#555555'
+  text-halo-color: '#ffffff'
+  text-halo-width: 2

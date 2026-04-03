@@ -1,0 +1,240 @@
+{
+  "version": 8,
+  "name": "Blank Map for Kids - No Text (白地図・子供向け・テキストなし)",
+  "sources": {
+    "geolonia": {
+      "type": "vector",
+      "url": "https://tileserver.geolonia.com/v2_combined2/tiles.json?key=YOUR-API-KEY"
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#f9f9f9"
+      }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "geolonia",
+      "source-layer": "water",
+      "paint": {
+        "fill-color": "#edf5fa",
+        "fill-outline-color": "#ddedf5"
+      }
+    },
+    {
+      "id": "oc-water",
+      "type": "fill",
+      "source": "geolonia",
+      "source-layer": "oc-water",
+      "paint": {
+        "fill-color": "#edf5fa",
+        "fill-outline-color": "#ddedf5"
+      }
+    },
+    {
+      "id": "waterway",
+      "type": "line",
+      "source": "geolonia",
+      "source-layer": "waterway",
+      "minzoom": 8,
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#ddedf5",
+        "line-width": {
+          "stops": [
+            [
+              8,
+              1
+            ],
+            [
+              14,
+              3
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "boundary-land-level-0",
+      "type": "line",
+      "source": "geolonia",
+      "source-layer": "boundary",
+      "filter": [
+        "==",
+        [
+          "get",
+          "admin_level"
+        ],
+        0
+      ],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "#555555",
+        "line-width": {
+          "stops": [
+            [
+              0,
+              1.5
+            ],
+            [
+              6,
+              3
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "boundary-land-level-2",
+      "type": "line",
+      "source": "geolonia",
+      "source-layer": "boundary",
+      "filter": [
+        "all",
+        [
+          "==",
+          [
+            "get",
+            "admin_level"
+          ],
+          2
+        ],
+        [
+          "==",
+          [
+            "has",
+            "maritime"
+          ],
+          false
+        ]
+      ],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "#555555",
+        "line-width": {
+          "stops": [
+            [
+              0,
+              1
+            ],
+            [
+              6,
+              2.5
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "boundary-land-level-4",
+      "type": "line",
+      "source": "geolonia",
+      "source-layer": "boundary",
+      "minzoom": 4,
+      "filter": [
+        "all",
+        [
+          "==",
+          [
+            "get",
+            "admin_level"
+          ],
+          4
+        ],
+        [
+          "==",
+          [
+            "has",
+            "maritime"
+          ],
+          false
+        ]
+      ],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "#3d5a80",
+        "line-width": {
+          "stops": [
+            [
+              4,
+              0.5
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              12,
+              1.5
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "boundary-land-level-6",
+      "type": "line",
+      "source": "geolonia",
+      "source-layer": "boundary",
+      "minzoom": 8,
+      "filter": [
+        "all",
+        [
+          "==",
+          [
+            "get",
+            "admin_level"
+          ],
+          6
+        ],
+        [
+          "==",
+          [
+            "has",
+            "maritime"
+          ],
+          false
+        ]
+      ],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "#7a9bb5",
+        "line-dasharray": [
+          3,
+          2
+        ],
+        "line-width": {
+          "stops": [
+            [
+              8,
+              1.2
+            ],
+            [
+              12,
+              2
+            ]
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+version: 8
+name: Blank Map for Kids - No Text
+  (白地図・子供向け・テキストなし)
+sources:
+  geolonia:
+    type: vector
+    url: https://tileserver.geolonia.com/v2_combined2/tiles.json?key=YOUR-API-KEY
+layers:
+  - !!inc/file layers/background.yml
+  - !!inc/file layers/water.yml
+  - !!inc/file layers/oc-water.yml
+  - !!inc/file layers/waterway.yml
+  - !!inc/file layers/boundary-land-level-0.yml
+  - !!inc/file layers/boundary-land-level-2.yml
+  - !!inc/file layers/boundary-land-level-4.yml
+  - !!inc/file layers/boundary-land-level-6.yml
