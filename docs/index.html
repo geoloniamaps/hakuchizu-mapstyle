@@ -23,10 +23,13 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       font-size: 14px;
     }
-    #controls label {
-      display: block;
-      margin: 4px 0;
-      cursor: pointer;
+    #controls select {
+      margin-top: 6px;
+      padding: 4px 8px;
+      font-size: 14px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      width: 100%;
     }
     .geolonia {
       width: 100vw;
@@ -37,9 +40,11 @@
 <body>
   <div id="controls">
     <strong>スタイル切替</strong>
-    <label><input type="radio" name="style" value="./style.json" checked> ラベルあり</label>
-    <label><input type="radio" name="style" value="./style-nolabel.json"> 国名のみ</label>
-    <label><input type="radio" name="style" value="./style-notext.json"> テキストなし</label>
+    <select id="style-select">
+      <option value="./style.json">ラベルあり</option>
+      <option value="./style-nolabel.json">国名のみ</option>
+      <option value="./style-notext.json">テキストなし</option>
+    </select>
   </div>
   <div
     id="map"
@@ -49,16 +54,24 @@
     data-lng="137.0"
     data-zoom="5"
   ></div>
-  <script src="https://cdn.geolonia.com/v1/embed?geolonia-api-key=YOUR-API-KEY"></script>
   <script>
-    document.querySelectorAll('input[name="style"]').forEach(function(radio) {
-      radio.addEventListener('change', function() {
-        var map = document.getElementById('map');
-        map.dataset.style = this.value;
-        // Reload to apply new style
-        location.reload();
-      });
+    // URLパラメータからスタイルを復元
+    var params = new URLSearchParams(location.search);
+    var savedStyle = params.get('style');
+    var select = document.getElementById('style-select');
+    var mapEl = document.getElementById('map');
+
+    if (savedStyle) {
+      select.value = savedStyle;
+      mapEl.dataset.style = savedStyle;
+    }
+
+    select.addEventListener('change', function() {
+      var url = new URL(location.href);
+      url.searchParams.set('style', this.value);
+      location.href = url.toString();
     });
   </script>
+  <script src="https://cdn.geolonia.com/v1/embed?geolonia-api-key=YOUR-API-KEY"></script>
 </body>
 </html>
