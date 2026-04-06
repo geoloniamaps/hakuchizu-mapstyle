@@ -99,6 +99,7 @@
       "type": "line",
       "source": "geolonia",
       "source-layer": "boundary",
+      "maxzoom": 4,
       "filter": [
         "all",
         [
