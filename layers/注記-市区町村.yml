@@ -1,0 +1,40 @@
+id: 注記-市区町村
+type: symbol
+source: v
+source-layer: Anno
+# 都道府県名(注記-都道府県)より高いズームで出すため minzoom を設定する
+minzoom: 9
+filter:
+  # 市区町村の行政注記(110)と居住地名(1300〜1999)のみ表示。
+  # 駅名(4xx)・自然地名(3xx)・道路番号(29xx)・施設(5xx/6xx)などは除外する。
+  - any
+  - - '=='
+    - - get
+      - vt_code
+    - 110
+  - - all
+    - - '>='
+      - - get
+        - vt_code
+      - 1300
+    - - '<'
+      - - get
+        - vt_code
+      - 2000
+layout:
+  text-font:
+    - Noto Sans Regular
+  text-field:
+    - get
+    - vt_text
+  text-size:
+    stops:
+      - - 9
+        - 12
+      - - 13
+        - 15
+  text-max-width: 6
+paint:
+  text-color: '#666666'
+  text-halo-color: '#ffffff'
+  text-halo-width: 1.5

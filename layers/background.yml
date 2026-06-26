@@ -1,4 +1,13 @@
 id: background
 type: background
 paint:
-  background-color: '#f9f9f9'
+  # 低ズーム(z4-8)は海色の薄い青、高ズーム(z8〜)は陸の白地に切り替える。
+  # 高ズームでは陸ポリゴン(AdmArea)が無く背景がそのまま陸地になるため白にする。
+  background-color:
+    - step
+    - - zoom
+    - '#ffffff'
+    - 4
+    - '#dbeaf5'
+    - 8
+    - '#ffffff'

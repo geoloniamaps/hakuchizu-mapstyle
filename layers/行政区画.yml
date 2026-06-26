@@ -1,0 +1,8 @@
+id: 行政区画
+type: fill
+source: v
+source-layer: AdmArea
+paint:
+  # 低ズームで陸地を白く塗る（背景の海色の上に陸を載せる）。
+  # AdmArea は z4-7 程度しか存在しないが、高ズームは背景白がそのまま陸になる。
+  fill-color: '#ffffff'

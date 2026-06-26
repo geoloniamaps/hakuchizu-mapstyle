@@ -2,9 +2,12 @@
   "version": 8,
   "name": "Blank Map for Kids (白地図・子供向け)",
   "sources": {
-    "geolonia": {
+    "v": {
       "type": "vector",
-      "url": "https://tileserver.geolonia.com/v2_combined2/tiles.json?key=YOUR-API-KEY"
+      "minzoom": 4,
+      "maxzoom": 16,
+      "attribution": "<a href=\"https://maps.gsi.go.jp/development/ichiran.html\" target=\"_blank\">国土地理院 最適化ベクトルタイル</a>",
+      "url": "https://tileserver.geolonia.com/gsi_optimal_bvmap-v1/tiles.json?key=YOUR-API-KEY"
     }
   },
   "glyphs": "https://glyphs.geolonia.com/{fontstack}/{range}.pbf",
@@ -13,285 +16,189 @@
       "id": "background",
       "type": "background",
       "paint": {
-        "background-color": "#f9f9f9"
+        "background-color": [
+          "step",
+          [
+            "zoom"
+          ],
+          "#ffffff",
+          4,
+          "#dbeaf5",
+          8,
+          "#ffffff"
+        ]
       }
     },
     {
-      "id": "water",
+      "id": "行政区画",
       "type": "fill",
-      "source": "geolonia",
-      "source-layer": "water",
+      "source": "v",
+      "source-layer": "AdmArea",
       "paint": {
-        "fill-color": "#edf5fa",
-        "fill-outline-color": "#ddedf5"
+        "fill-color": "#ffffff"
       }
     },
     {
-      "id": "oc-water",
+      "id": "水域",
       "type": "fill",
-      "source": "geolonia",
-      "source-layer": "oc-water",
+      "source": "v",
+      "source-layer": "WA",
+      "filter": [
+        "!",
+        [
+          "in",
+          [
+            "get",
+            "vt_code"
+          ],
+          [
+            "literal",
+            [
+              5201,
+              5202,
+              5203,
+              5211,
+              5212,
+              5231,
+              5233,
+              5242,
+              5290
+            ]
+          ]
+        ]
+      ],
       "paint": {
-        "fill-color": "#edf5fa",
-        "fill-outline-color": "#ddedf5"
+        "fill-color": "#dbeaf5"
       }
     },
     {
-      "id": "waterway",
+      "id": "市区町村界",
       "type": "line",
-      "source": "geolonia",
-      "source-layer": "waterway",
-      "minzoom": 8,
+      "source": "v",
+      "source-layer": "AdmBdry",
+      "minzoom": 11,
+      "filter": [
+        "==",
+        [
+          "get",
+          "vt_code"
+        ],
+        1212
+      ],
       "layout": {
         "line-cap": "round",
         "line-join": "round"
       },
       "paint": {
-        "line-color": "#ddedf5",
-        "line-width": {
-          "stops": [
-            [
-              8,
-              1
-            ],
-            [
-              14,
-              3
-            ]
-          ]
-        }
+        "line-color": "#999999",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          0.8,
+          12,
+          1.5
+        ]
       }
     },
     {
-      "id": "boundary-land-level-0",
+      "id": "都府県界広域",
       "type": "line",
-      "source": "geolonia",
-      "source-layer": "boundary",
+      "source": "v",
+      "source-layer": "AdmBdry",
+      "maxzoom": 8,
       "filter": [
         "==",
         [
           "get",
-          "admin_level"
+          "vt_code"
         ],
-        0
+        1212
       ],
       "layout": {
-        "line-join": "round",
-        "line-cap": "round"
-      },
-      "paint": {
-        "line-color": "#555555",
-        "line-width": {
-          "stops": [
-            [
-              0,
-              1.5
-            ],
-            [
-              6,
-              3
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "boundary-land-level-2",
-      "type": "line",
-      "source": "geolonia",
-      "source-layer": "boundary",
-      "maxzoom": 4,
-      "filter": [
-        "all",
-        [
-          "==",
-          [
-            "get",
-            "admin_level"
-          ],
-          2
-        ],
-        [
-          "==",
-          [
-            "has",
-            "maritime"
-          ],
-          false
-        ]
-      ],
-      "layout": {
-        "line-join": "round",
-        "line-cap": "round"
-      },
-      "paint": {
-        "line-color": "#555555",
-        "line-width": {
-          "stops": [
-            [
-              0,
-              1
-            ],
-            [
-              6,
-              2.5
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "boundary-land-level-4",
-      "type": "line",
-      "source": "geolonia",
-      "source-layer": "boundary",
-      "minzoom": 4,
-      "filter": [
-        "all",
-        [
-          "==",
-          [
-            "get",
-            "admin_level"
-          ],
-          4
-        ],
-        [
-          "==",
-          [
-            "has",
-            "maritime"
-          ],
-          false
-        ]
-      ],
-      "layout": {
-        "line-join": "round",
-        "line-cap": "round"
+        "line-cap": "round",
+        "line-join": "round"
       },
       "paint": {
         "line-color": "#3d5a80",
-        "line-width": {
-          "stops": [
-            [
-              4,
-              0.5
-            ],
-            [
-              7,
-              1
-            ],
-            [
-              12,
-              1.5
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "boundary-land-level-6",
-      "type": "line",
-      "source": "geolonia",
-      "source-layer": "boundary",
-      "minzoom": 8,
-      "filter": [
-        "all",
-        [
-          "==",
+        "line-width": [
+          "interpolate",
           [
-            "get",
-            "admin_level"
+            "linear"
           ],
-          6
-        ],
-        [
-          "==",
           [
-            "has",
-            "maritime"
+            "zoom"
           ],
-          false
+          5,
+          0.6,
+          7,
+          1.2
         ]
-      ],
-      "layout": {
-        "line-join": "round",
-        "line-cap": "round"
-      },
-      "paint": {
-        "line-color": "#7a9bb5",
-        "line-dasharray": [
-          3,
-          2
-        ],
-        "line-width": {
-          "stops": [
-            [
-              8,
-              1.2
-            ],
-            [
-              12,
-              2
-            ]
-          ]
-        }
       }
     },
     {
-      "id": "place-country",
-      "type": "symbol",
-      "source": "geolonia",
-      "source-layer": "place",
-      "maxzoom": 12,
+      "id": "都府県界",
+      "type": "line",
+      "source": "v",
+      "source-layer": "AdmBdry",
       "filter": [
         "==",
-        "class",
-        "country"
+        [
+          "get",
+          "vt_code"
+        ],
+        1211
+      ],
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#3d5a80",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          4,
+          0.6,
+          8,
+          1.2,
+          12,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "注記-都道府県",
+      "type": "symbol",
+      "source": "v",
+      "source-layer": "Anno",
+      "maxzoom": 9.5,
+      "filter": [
+        "==",
+        [
+          "get",
+          "vt_code"
+        ],
+        140
       ],
       "layout": {
         "text-font": [
           "Noto Sans Bold"
         ],
-        "text-field": "{name}",
-        "text-size": {
-          "stops": [
-            [
-              1,
-              14
-            ],
-            [
-              4,
-              20
-            ]
-          ]
-        },
-        "text-max-width": 6,
-        "text-letter-spacing": 0.1
-      },
-      "paint": {
-        "text-color": "#444444",
-        "text-halo-color": "#ffffff",
-        "text-halo-width": 2
-      }
-    },
-    {
-      "id": "place-state",
-      "type": "symbol",
-      "source": "geolonia",
-      "source-layer": "place",
-      "minzoom": 4,
-      "maxzoom": 12,
-      "filter": [
-        "==",
-        "class",
-        "state"
-      ],
-      "layout": {
-        "text-font": [
-          "Noto Sans Bold"
+        "text-field": [
+          "get",
+          "vt_text"
         ],
-        "text-field": "{name}",
         "text-size": {
           "stops": [
             [
@@ -304,44 +211,6 @@
             ]
           ]
         },
-        "text-max-width": 6,
-        "text-letter-spacing": 0.05
-      },
-      "paint": {
-        "text-color": "#555555",
-        "text-halo-color": "#ffffff",
-        "text-halo-width": 2
-      }
-    },
-    {
-      "id": "place-city",
-      "type": "symbol",
-      "source": "geolonia",
-      "source-layer": "place",
-      "minzoom": 6,
-      "maxzoom": 16,
-      "filter": [
-        "==",
-        "class",
-        "city"
-      ],
-      "layout": {
-        "text-font": [
-          "Noto Sans Bold"
-        ],
-        "text-field": "{name}",
-        "text-size": {
-          "stops": [
-            [
-              6,
-              13
-            ],
-            [
-              10,
-              16
-            ]
-          ]
-        },
         "text-max-width": 6
       },
       "paint": {
@@ -351,22 +220,49 @@
       }
     },
     {
-      "id": "place-town",
+      "id": "注記-市区町村",
       "type": "symbol",
-      "source": "geolonia",
-      "source-layer": "place",
+      "source": "v",
+      "source-layer": "Anno",
       "minzoom": 9,
-      "maxzoom": 16,
       "filter": [
-        "==",
-        "class",
-        "town"
+        "any",
+        [
+          "==",
+          [
+            "get",
+            "vt_code"
+          ],
+          110
+        ],
+        [
+          "all",
+          [
+            ">=",
+            [
+              "get",
+              "vt_code"
+            ],
+            1300
+          ],
+          [
+            "<",
+            [
+              "get",
+              "vt_code"
+            ],
+            2000
+          ]
+        ]
       ],
       "layout": {
         "text-font": [
           "Noto Sans Regular"
         ],
-        "text-field": "{name}",
+        "text-field": [
+          "get",
+          "vt_text"
+        ],
         "text-size": {
           "stops": [
             [
@@ -383,32 +279,6 @@
       },
       "paint": {
         "text-color": "#666666",
-        "text-halo-color": "#ffffff",
-        "text-halo-width": 1.5
-      }
-    },
-    {
-      "id": "place-village",
-      "type": "symbol",
-      "source": "geolonia",
-      "source-layer": "place",
-      "minzoom": 11,
-      "maxzoom": 16,
-      "filter": [
-        "==",
-        "class",
-        "village"
-      ],
-      "layout": {
-        "text-font": [
-          "Noto Sans Regular"
-        ],
-        "text-field": "{name}",
-        "text-size": 13,
-        "text-max-width": 6
-      },
-      "paint": {
-        "text-color": "#777777",
         "text-halo-color": "#ffffff",
         "text-halo-width": 1.5
       }

@@ -2,17 +2,17 @@ version: 8
 name: Blank Map for Kids - No Labels
   (白地図・子供向け・ラベルなし)
 sources:
-  geolonia:
+  v:
     type: vector
-    url: https://tileserver.geolonia.com/v2_combined2/tiles.json?key=YOUR-API-KEY
+    minzoom: 4
+    maxzoom: 16
+    attribution: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">国土地理院 最適化ベクトルタイル</a>
+    url: https://tileserver.geolonia.com/gsi_optimal_bvmap-v1/tiles.json?key=YOUR-API-KEY
 glyphs: https://glyphs.geolonia.com/{fontstack}/{range}.pbf
 layers:
   - !!inc/file layers/background.yml
-  - !!inc/file layers/water.yml
-  - !!inc/file layers/oc-water.yml
-  - !!inc/file layers/waterway.yml
-  - !!inc/file layers/boundary-land-level-0.yml
-  - !!inc/file layers/boundary-land-level-2.yml
-  - !!inc/file layers/boundary-land-level-4.yml
-  - !!inc/file layers/boundary-land-level-6.yml
-  - !!inc/file layers/place-country.yml
+  - !!inc/file layers/行政区画.yml
+  - !!inc/file layers/水域.yml
+  - !!inc/file layers/市区町村界.yml
+  - !!inc/file layers/都府県界広域.yml
+  - !!inc/file layers/都府県界.yml
