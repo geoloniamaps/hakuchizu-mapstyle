@@ -17,13 +17,11 @@ layout:
   line-join: round
   line-cap: round
 paint:
-  line-color: '#7a9bb5'
-  line-dasharray:
-    - 3
-    - 2
+  # 地理院地図の白地図に合わせ、市区町村界はグレーの実線で表示する
+  line-color: '#999999'
   line-width:
     stops:
       - - 8
-        - 1.2
+        - 1
       - - 12
-        - 2
+        - 1.5

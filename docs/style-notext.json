@@ -218,20 +218,16 @@
         "line-cap": "round"
       },
       "paint": {
-        "line-color": "#7a9bb5",
-        "line-dasharray": [
-          3,
-          2
-        ],
+        "line-color": "#999999",
         "line-width": {
           "stops": [
             [
               8,
-              1.2
+              1
             ],
             [
               12,
-              2
+              1.5
             ]
           ]
         }
