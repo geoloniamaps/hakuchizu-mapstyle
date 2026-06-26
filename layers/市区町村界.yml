@@ -1,0 +1,26 @@
+id: 市区町村界
+type: line
+source: v
+source-layer: AdmBdry
+# GSI最適化ベクトルは市区町村界(1212)を z11 以上(25kスケール階層)にしか持たない。
+# z8-10(200k階層)は都府県界(1211)のみでデータが無いため、z11 から表示する。
+minzoom: 11
+filter:
+  - '=='
+  - - get
+    - vt_code
+  - 1212
+layout:
+  line-cap: round
+  line-join: round
+paint:
+  # 市区町村界はグレーの実線（地理院白地図に合わせる）
+  line-color: '#999999'
+  line-width:
+    - interpolate
+    - - linear
+    - - zoom
+    - 8
+    - 0.8
+    - 12
+    - 1.5

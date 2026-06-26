@@ -1,0 +1,26 @@
+id: 都府県界広域
+type: line
+source: v
+source-layer: AdmBdry
+# 低ズーム(z5-7)では都府県界(1211)のデータが無く、概略境界が 1212 で入っている。
+# そのスケールでは実質的に都道府県レベルの境界なので、都府県界として青で表示する。
+# z8 以上は本来の 1211(都府県界) と 1212(市区町村界) に切り替えるため maxzoom で打ち切る。
+maxzoom: 8
+filter:
+  - '=='
+  - - get
+    - vt_code
+  - 1212
+layout:
+  line-cap: round
+  line-join: round
+paint:
+  line-color: '#3d5a80'
+  line-width:
+    - interpolate
+    - - linear
+    - - zoom
+    - 5
+    - 0.6
+    - 7
+    - 1.2

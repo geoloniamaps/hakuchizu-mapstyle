@@ -1,0 +1,25 @@
+id: 都府県界
+type: line
+source: v
+source-layer: AdmBdry
+filter:
+  - '=='
+  - - get
+    - vt_code
+  - 1211
+layout:
+  line-cap: round
+  line-join: round
+paint:
+  # 都府県界（前回方針どおり紺色を維持）
+  line-color: '#3d5a80'
+  line-width:
+    - interpolate
+    - - linear
+    - - zoom
+    - 4
+    - 0.6
+    - 8
+    - 1.2
+    - 12
+    - 1.8

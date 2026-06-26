@@ -1,23 +1,25 @@
-id: place-city
+id: 注記-都道府県
 type: symbol
-source: geolonia
-source-layer: place
-minzoom: 6
-maxzoom: 16
+source: v
+source-layer: Anno
+maxzoom: 9.5
 filter:
-  - ==
-  - class
-  - city
+  - '=='
+  - - get
+    - vt_code
+  - 140
 layout:
   text-font:
     - Noto Sans Bold
-  text-field: '{name}'
+  text-field:
+    - get
+    - vt_text
   text-size:
     stops:
-      - - 6
+      - - 4
         - 13
-      - - 10
-        - 16
+      - - 8
+        - 18
   text-max-width: 6
 paint:
   text-color: '#555555'
