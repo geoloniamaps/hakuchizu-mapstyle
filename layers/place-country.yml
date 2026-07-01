@@ -19,6 +19,19 @@ layout:
         - 20
   text-max-width: 6
   text-letter-spacing: 0.1
+  # 日本を最優先で配置し、隣国とのラベル衝突で日本が消えるのを防ぐ
+  symbol-sort-key:
+    - case
+    - - in
+      - - get
+        - name
+      - - literal
+        - ['日本', 'Japan']
+    - 0
+    - - coalesce
+      - - get
+        - rank
+      - 100
 paint:
   text-color: '#444444'
   text-halo-color: '#ffffff'

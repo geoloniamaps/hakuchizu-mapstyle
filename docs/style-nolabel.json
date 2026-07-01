@@ -266,7 +266,33 @@
           ]
         },
         "text-max-width": 6,
-        "text-letter-spacing": 0.1
+        "text-letter-spacing": 0.1,
+        "symbol-sort-key": [
+          "case",
+          [
+            "in",
+            [
+              "get",
+              "name"
+            ],
+            [
+              "literal",
+              [
+                "日本",
+                "Japan"
+              ]
+            ]
+          ],
+          0,
+          [
+            "coalesce",
+            [
+              "get",
+              "rank"
+            ],
+            100
+          ]
+        ]
       },
       "paint": {
         "text-color": "#444444",
